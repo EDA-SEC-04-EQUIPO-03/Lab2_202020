@@ -84,7 +84,31 @@ def test_loading_CSV_y_ordenamiento():
         else:
             break
         assert x > y
+
 def test_less():
     lst=lst_movies
-    print("Ordenando lista ascendentemente...")
+    print("Ordenando de manera ascendente...")
+    iterator=it.newIterator(lst)
+    anterior=0
+    while it.hasNext(iterator):
+        element=it.next(iterator)
+        assert element>=anterior
+        anterior=element
+        print(anterior)
+    print("sorting ....")
+    sort.ShellSort(lst_movies, less)
+
+def test_greater():
+    lst=lst_movies
+    print("Ordenando de manera descendente...")
+    iterator=it.newIterator(lst)
+    maximo=5000
+    while it.hasNext(iterator):
+        element=it.next(iterator)
+        assert element<=5000
+        maximo=element
+        print(maximo)
+    print("sorting ....")
+    sort.ShellSort(lst_movies, greater)
+
     
