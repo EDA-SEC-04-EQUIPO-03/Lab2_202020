@@ -52,11 +52,16 @@ def printList(lst):
     iterator = it.newIterator(lst)
     while it.hasNext(iterator):
         element = it.next(iterator)
-        print(element['imbd_id'])
+        print(element['id'])
 
 def less(element1, element2):
-    if int(element1['imbd_id']) < int(element2['imbd_id']):
+    if int(element1['id']) < int(element2['id']):
         return True
+    return False
+
+def greater(element1, element2):
+    if int(element1['id']) > int(element2['id']):
+        return True 
     return False
 
 def test_sort():
@@ -68,15 +73,18 @@ def test_sort():
 
 def test_loading_CSV_y_ordenamiento():
     """
-    Prueba que se pueda leer el archivo y que despues de relizar el sort, el orden este correcto
+    Prueba que se pueda leer el archivo y que despues de realizar el sort, el orden este correcto
     """
     setUp()
     sort.shellSort(lst_movies,less)
     while not (lt.isEmpty(lst_movies)):
-        x = int(lt.removeLast(lst_movies)['imbd_id'])
+        x = int(lt.removeLast(lst_movies)['id'])
         if not (lt.isEmpty(lst_movies)):
-            y = int(lt.lastElement(lst_movies)['imbd_id'])
+            y = int(lt.lastElement(lst_movies)['id'])
         else:
             break
         assert x > y
-
+def test_less():
+    lst=lst_movies
+    print("Ordenando lista ascendentemente...")
+    
