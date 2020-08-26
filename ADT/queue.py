@@ -59,7 +59,7 @@ def enqueue (queue, element):
         lt.addLast (queue, element)
         return queue
     except Exception as ex:
-        err.reraise(ex, 'enqueue ')
+        error.reraise(ex, 'enqueue ')
 
 def dequeue (queue):
     """ Retorna el elemento en la primer posición de la cola, y lo elimina.
