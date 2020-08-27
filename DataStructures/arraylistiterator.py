@@ -37,8 +37,6 @@ def newIterator(lst):
     iterator = {'iterable_lst':lst,'current_node':-1, 'type':'ARRAY_ITERATOR'}
     return iterator
 
-
-
 def hasNext(iterator):
     """
     Informa si se puede seguir iterando.
