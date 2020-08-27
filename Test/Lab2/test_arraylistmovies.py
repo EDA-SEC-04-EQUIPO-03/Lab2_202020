@@ -68,10 +68,10 @@ def test_addLast (lst, movies):
 
 
 def test_getElement(lstmovies, movies):
-    book = slt.getElement(lstmovies, 1)
-    assert book == movies[0]
-    book = slt.getElement(lstmovies, 5)
-    assert book == movies[4]
+    movie = slt.getElement(lstmovies, 1)
+    assert movie == movies[0]
+    movie = slt.getElement(lstmovies, 5)
+    assert movie == movies[4]
 
 
 def test_removeFirst (lstmovies, movies):
