@@ -99,7 +99,7 @@ def countElementsFilteredByColumn(criteria, column, lst):
         t1_start = process_time() #tiempo inicial
         counter=0
         iterator = it.newIterator(lst)
-        while  it.hasNext(iterator):
+        while it.hasNext(iterator):
             element = it.next(iterator)
             if criteria.lower() in element[column].lower(): #filtrar por palabra clave 
                 counter+=1           
@@ -107,7 +107,7 @@ def countElementsFilteredByColumn(criteria, column, lst):
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return counter
 
-def countElementsByCriteria(criteria1, criteria2, lst):
+def countElementsByCriteria(lst, criteria1, criteria2, column1, column2):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
@@ -115,55 +115,51 @@ def countElementsByCriteria(criteria1, criteria2, lst):
         print("La lista esta vacía")
         return 0
     else:
+        #Hallar 10 vote_count mayores
         print("proceso 1")
         t1_start = process_time()
         iterator = it.newIterator(lst)
-        p10_mejores=[0,0,0,0,0,0,0,0,0,0]
+        ranking=[] 
         while  it.hasNext(iterator):
-            element= it.next(iterator)
-            if criteria.lower() in element[column1].lower(): "vote count = criteria"
-                if elemento[columns1]>p10_mejores[0] and elemento[columns1] not in p10_mejores:
-                    p10_mejores[0]=element[column2]
-                if elemento[columns1]>p10_mejores[1] and elemento[columns1] not in p10_mejores:
-                    p10_mejores[1]=element[column2]
-                if elemento[columns1]>p10_mejores[2] and elemento[columns1] not in p10_mejores:
-                    p10_mejores[2]=element[column2]
-                if elemento[columns1]>p10_mejores[3] and elemento[columns1] not in p10_mejores:
-                    p10_mejores[3]=element[column2]
-                if elemento[columns1]>p10_mejores[4] and elemento[columns1] not in p10_mejores:
-                    p10_mejores[4]=element[column2]
-                if elemento[columns1]>p10_mejores[5] and elemento[columns1] not in p10_mejores:
-                    p10_mejores[5]=element[column2]
-                if elemento[columns1]>p10_mejores[6] and elemento[columns1] not in p10_mejores:
-                    p10_mejores[6]=element[column2]
-                if elemento[columns1]>p10_mejores[7] and elemento[columns1] not in p10_mejores:
-                    p10_mejores[7]=element[column2]
-                if elemento[columns1]>p10_mejores[8] and elemento[columns1] not in p10_mejores:
-                    p10_mejores[8]=element[column2]
-                if elemento[columns1]>p10_mejores[9] and elemento[columns1] not in p10_mejores:
-                    p10_mejores[9]=element[column2]
-        t1_stop = process_time()
-        print("Tiempo de ejecución del proceso 1 ",t1_stop-t1_start," segundos")
+            element = it.next(iterator)
+            if criteria1.lower() in element[column1]:
+                ranking.append(element[column1])
+        ranking.sort()
+        ranking.reverse()
+        if len(ranking)>10:
+            while len(ranking)!=10:
+                del ranking[-1]
+        #Hallar 5 vote_average menores
         print("proceso 2")
-        t2_start = process_time()
-        iterator = it.newIterator(lst)
-        promedios_malo=[11111111111,11111111111,11111111111,11111111111,11111111111] 
-        while  it.hasNext(iterator): "vote average = criteria"
-            element=it.next(iterator)
-            if criteria2.lower() in element[columns2].lower():
-                if elemento[columns2]<promedios_malo[0] and elemento[columns2] not in promedios_malo:
-                    promedios_malo[0]=element[columns2]
-                if elemento[columns2]<promedios_malo[1] and elemento[columns2] not in promedios_malo:
-                    promedios_malo[1]=element[columns2]
-                if elemento[columns2]<promedios_malo[2] and elemento[columns2] not in promedios_malo:
-                    promedios_malo[2]=element[columns2]
-                if elemento[columns2]<promedios_malo[3] and elemento[columns2] not in promedios_malo:
-                    promedios_malo[3]=element[columns2]
-                if elemento[columns2]<promedios_malo[4] and elemento[columns2] not in promedios_malo:
-                    promedios_malo[4]=element[columns2]
-        t2_stop = process_time()
-        print("Tiempo de ejecución del proceso 2 ",t2_stop-t2_start," segundos")
-    return (p10_mejores,promedios_malo)
+        iterator2 = it.newIterator(lst)
+        avg=[]
+        while it.hasNext(iterator2):
+            element2 = it.next(iterator2)
+            if criteria2.lower() in element2[column2]:
+                avg.append(element2[column2])
+        avg.sort()
+        if len(avg)>5:
+            while len(avg)!=5:
+                del avg[-1]
+        #Hallar pelis con count vote mayores
+        iterator3=it.newIterator(lst)
+        nombres_count_vote=[]
+        while it.hasNext(iterator3)
+            element3=it.next[iterator3]
+            for valor in ranking:
+                if  valor == element3[column1] and element3["original_tittle"] not in nombres_count_vote:
+                    nombres_count_vote.append(element3["original_tittle"])
+        #Hallar pelis con count vote mayores
+        iterator4=it.newIterator(lst)
+        nombres_vote_avg=[]
+        while it.hasNext(iterator4):
+            element4=it.next[iterator4]
+            for dato in avg:
+                if  dato == element4[column2] and element4["original_tittle"] not in nombres_vote_avg:
+                    nombres_vote_avg.append(element4["original_tittle"])
+        t1_stop = process_time() #tiempo final
+        print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
+    return ()
 
 def orderElementsByCriteria(nombre, lst):
     """
@@ -236,9 +232,9 @@ def main():
                 if lista==None or lista['size']==0: #obtener la longitud de la lista
                     print("La lista esta vacía")
                 else:
-                    criteria1 =input('Ingrese el criterio de búsqueda #1\n')
-                    criteria1 =input('Ingrese el criterio de búsqueda #2\n')
-                    counter=countElementsByCriteria(criteria1, criteria2, lista)
+                    criteria1 =input('Ingrese el criterio de búsqueda #1\n') #
+                    criteria2 =input('Ingrese el criterio de búsqueda #2\n') #
+                    counter=countElementsByCriteria(criteria1, criteria2, lista, "vote_count", "vote_average")
                     print("Coinciden ",counter," elementos con el crtierio: '", criteria1, criteria2 ,"' (en construcción ...)")
             elif int(inputs[0])==5: #opcion 5
                 if lista==None or lista['size']==0: #obtener la longitud de la lista
