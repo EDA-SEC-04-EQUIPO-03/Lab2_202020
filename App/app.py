@@ -159,7 +159,7 @@ def countElementsByCriteria(lst, criteria1, criteria2, column1, column2):
                     nombres_vote_avg.append(element4["original_tittle"])
         t1_stop = process_time() #tiempo final
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
-    return ()
+    return ("Las pelis con mayor número de votaciones son: " +nombres_count_vote+ " además las pelis con menor promedio de votoso son: "+ nombres_vote_avg)
 
 def orderElementsByCriteria(nombre, lst):
     """
